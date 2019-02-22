@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Railway Reservation</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+	<link href="http://www.farmingarms.com/css/jquery.toast.css" rel="stylesheet" type="text/css" />
+	<script src="http://www.farmingarms.com/js/jquery.min.js"></script>
+	<script src="http://www.farmingarms.com/js/jquery.toast.js"></script> 
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<form method="POST" action="store">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">First Name</span>
+										<input class="form-control" id ="fname" name="fname" type="text"
+											placeholder="First Name...">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Last Name</span>
+										<input class="form-control" name="lname" type="text"
+											placeholder="Last Name..." id="lname">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">From</span>
+										<input class="form-control" id="from1" type="text" name="from1" placeholder="FROM">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">To</span>
+										<input class="form-control" type="text" id="to1" name="to1" placeholder="TO">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Departing</span>
+										<input class="form-control" type="date" id="date" name="date">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Adults (18+)</span>
+										<select class="form-control" name="type1" id="type1">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Children (0-17)</span>
+										<select class="form-control" name="count" id="count">
+											<option>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Travel class</span>
+										<select class="form-control" name="class1" id="class1">
+											<option>AC First class(1A)</option>
+											<option> AC 2 Tier(2A) </option>
+											<option> AC 3 Tier(3A) </option>
+											<option> AC Economy(3E)</option>
+											<option>First Class(FC)</option>
+											<option>Sleeper(SL)</option>
+											<option>Second Sitting(2S)</option>
+											<option> AC Chair Car(CC) </option>
+											<option> Exec. Chair Car(EC) </option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Email</span>
+										<input class="form-control" type="email" name="email" id="email"
+											placeholder="Enter your Email">
+
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Phone</span>
+										<input class="form-control" type="tel" name="tel" id="tel"
+											placeholder="Enter you Phone">`
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-checkbox">
+									<label for="Credit Card">
+										<input type="radio" id="payment" value="Credit Card"  name="payment">
+										<span></span>Credit Card
+									</label>
+									<label for="Debit Card">
+										<input type="radio" id="payment"  value="Debit Card" name="payment">
+										<span></span>Debit Card
+									</label>
+									<label for="Net Banking">
+										<input type="radio" id="payment" checked value="Net Banking" name="payment">
+										<span></span>Net Banking
+									</label>
+								</div>
+							</div>
+
+							<div class="form-btn">
+								<button class="submit-btn">Show Booking</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+		$(".submit-btn").click(function(e){
+			e.preventDefault();
+			if(!$('#fname').val() || !$('#lname').val() || !$('#from1').val() || !$('#to1').val() ||!$('#date').val() || !$('#type1').val() || !$('#count').val() || !$('#class1').val()|| !$('#email').val()|| !$('#tel').val() || !$('#payment').val()) {
+				$.toast({
+                            text: "All Fields are Required", // Text that is to be shown in the toast
+                            heading: 'Notification', // Optional heading to be shown on the toast
+                            icon: "error", // Type of toast icon
+                            showHideTransition: 'fade', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 15000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'bottom-left', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'left',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#426184',  // Background color of the toast loader
+                        });
+			}  else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#email').val())))  
+            {  
+				$.toast({
+                            text: 'Email Id is not valid', // Text that is to be shown in the toast
+                            heading: 'Notification', // Optional heading to be shown on the toast
+                            icon: "error", // Type of toast icon
+                            showHideTransition: 'fade', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 15000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'bottom-left', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'left',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#426184',  // Background color of the toast loader
+                        });
+                return false;
+            }
+        else if (!(/^\d{10}$/.test($('#tel').val())))  
+            {  
+				$.toast({
+                            text: "Phone Number is not valid", // Text that is to be shown in the toast
+                            heading: 'Notification', // Optional heading to be shown on the toast
+                            icon: "error", // Type of toast icon
+                            showHideTransition: 'fade', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 15000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'bottom-left', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'left',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#426184',  // Background color of the toast loader
+                        });
+                return false;
+            }
+			else{
+				$("form").submit();
+			}
+		});
+    });
+				if("{{response}}"){
+                    $.toast({
+                            text: "{{ response }}", // Text that is to be shown in the toast
+                            heading: 'Notification', // Optional heading to be shown on the toast
+                            icon: "success", // Type of toast icon
+                            showHideTransition: 'fade', // fade, slide or plain
+                            allowToastClose: true, // Boolean value true or false
+                            hideAfter: 15000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                            position: 'bottom-left', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                            textAlign: 'left',  // Text alignment i.e. left, right or center
+                            loader: true,  // Whether to show loader or not. True by default
+                            loaderBg: '#426184',  // Background color of the toast loader
+                        });
+				}
+</script>
+</html>
