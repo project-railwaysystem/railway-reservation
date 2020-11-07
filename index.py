@@ -5,10 +5,10 @@ app = Flask(__name__, static_url_path="", static_folder="static")
 
 from flaskext.mysql import MySQL
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] ="root"
-app.config['MYSQL_DATABASE_PASSWORD'] = ""
-app.config['MYSQL_DATABASE_DB'] ="railway"
-app.config['MYSQL_DATABASE_HOST'] = "localhost"
+app.config['MYSQL_DATABASE_USER'] ="epiz_21548430"
+app.config['MYSQL_DATABASE_PASSWORD'] = "Yni4VOUXQ7l0"
+app.config['MYSQL_DATABASE_DB'] ="epiz_21548430_rail_reservation"
+app.config['MYSQL_DATABASE_HOST'] = "sql106.epizy.com"
 mysql.init_app(app)
 con=mysql.connect()
 cursor=con.cursor()
